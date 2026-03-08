@@ -6,106 +6,143 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D26DDA1A2F5E222500F8E323 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D26DDA192F5E222500F8E323 /* SnapKit */; };
+		D26DDA1C2F5E222500F8E323 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = D26DDA1B2F5E222500F8E323 /* SnapKit-Dynamic */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		D26DD9E62F5DFB6500F8E323 /* Sofascore2026.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sofascore2026.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D26DDA002F5E200A00F8E323 /* Sofascore2026.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sofascore2026.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2D88BBB2F5E26E800EB9CBF /* Sofascore2026.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Sofascore2026.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D26DDA122F5E200C00F8E323 /* Exceptions for "Sofascore2026" folder in "Sofascore2026" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D26DD9FF2F5E200A00F8E323 /* Sofascore2026 */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D26DD9E82F5DFB6500F8E323 /* Sofascore2026 */ = {
+		D26DDA022F5E200A00F8E323 /* Sofascore2026 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D26DDA122F5E200C00F8E323 /* Exceptions for "Sofascore2026" folder in "Sofascore2026" target */,
+			);
 			path = Sofascore2026;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D26DD9E32F5DFB6500F8E323 /* Frameworks */ = {
+		D26DD9FD2F5E200A00F8E323 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D26DDA1A2F5E222500F8E323 /* SnapKit in Frameworks */,
+				D26DDA1C2F5E222500F8E323 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D26DD9DD2F5DFB6500F8E323 = {
+		D26DD9F72F5E200A00F8E323 = {
 			isa = PBXGroup;
 			children = (
-				D26DD9E82F5DFB6500F8E323 /* Sofascore2026 */,
-				D26DD9E72F5DFB6500F8E323 /* Products */,
+				D26DDA022F5E200A00F8E323 /* Sofascore2026 */,
+				D26DDA012F5E200A00F8E323 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		D26DD9E72F5DFB6500F8E323 /* Products */ = {
+		D26DDA012F5E200A00F8E323 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D26DD9E62F5DFB6500F8E323 /* Sofascore2026.app */,
+				D26DDA002F5E200A00F8E323 /* Sofascore2026.app */,
 			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2D88BBD2F5E26E800EB9CBF /* Products */ = {
+			isa = PBXGroup;
 			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D26DD9E52F5DFB6500F8E323 /* Sofascore2026 */ = {
+		D26DD9FF2F5E200A00F8E323 /* Sofascore2026 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D26DD9F12F5DFB6800F8E323 /* Build configuration list for PBXNativeTarget "Sofascore2026" */;
+			buildConfigurationList = D26DDA132F5E200C00F8E323 /* Build configuration list for PBXNativeTarget "Sofascore2026" */;
 			buildPhases = (
-				D26DD9E22F5DFB6500F8E323 /* Sources */,
-				D26DD9E32F5DFB6500F8E323 /* Frameworks */,
-				D26DD9E42F5DFB6500F8E323 /* Resources */,
+				D26DD9FC2F5E200A00F8E323 /* Sources */,
+				D26DD9FD2F5E200A00F8E323 /* Frameworks */,
+				D26DD9FE2F5E200A00F8E323 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				D26DD9E82F5DFB6500F8E323 /* Sofascore2026 */,
+				D26DDA022F5E200A00F8E323 /* Sofascore2026 */,
 			);
 			name = Sofascore2026;
 			packageProductDependencies = (
+				D26DDA192F5E222500F8E323 /* SnapKit */,
+				D26DDA1B2F5E222500F8E323 /* SnapKit-Dynamic */,
 			);
 			productName = Sofascore2026;
-			productReference = D26DD9E62F5DFB6500F8E323 /* Sofascore2026.app */;
+			productReference = D26DDA002F5E200A00F8E323 /* Sofascore2026.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D26DD9DE2F5DFB6500F8E323 /* Project object */ = {
+		D26DD9F82F5E200A00F8E323 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2630;
 				LastUpgradeCheck = 2630;
 				TargetAttributes = {
-					D26DD9E52F5DFB6500F8E323 = {
+					D26DD9FF2F5E200A00F8E323 = {
 						CreatedOnToolsVersion = 26.3;
 					};
 				};
 			};
-			buildConfigurationList = D26DD9E12F5DFB6500F8E323 /* Build configuration list for PBXProject "Sofascore2026" */;
+			buildConfigurationList = D26DD9FB2F5E200A00F8E323 /* Build configuration list for PBXProject "Sofascore2026" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = D26DD9DD2F5DFB6500F8E323;
+			mainGroup = D26DD9F72F5E200A00F8E323;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D26DDA182F5E222500F8E323 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = D26DD9E72F5DFB6500F8E323 /* Products */;
+			productRefGroup = D26DDA012F5E200A00F8E323 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D2D88BBD2F5E26E800EB9CBF /* Products */;
+					ProjectRef = D2D88BBB2F5E26E800EB9CBF /* Sofascore2026.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
-				D26DD9E52F5DFB6500F8E323 /* Sofascore2026 */,
+				D26DD9FF2F5E200A00F8E323 /* Sofascore2026 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D26DD9E42F5DFB6500F8E323 /* Resources */ = {
+		D26DD9FE2F5E200A00F8E323 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,7 +152,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D26DD9E22F5DFB6500F8E323 /* Sources */ = {
+		D26DD9FC2F5E200A00F8E323 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -125,7 +162,69 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		D26DD9EF2F5DFB6800F8E323 /* Debug */ = {
+		D26DDA142F5E200C00F8E323 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sofascore2026/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = hr.jana.Sofascore2026;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D26DDA152F5E200C00F8E323 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sofascore2026/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = hr.jana.Sofascore2026;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D26DDA162F5E200C00F8E323 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -188,7 +287,7 @@
 			};
 			name = Debug;
 		};
-		D26DD9F02F5DFB6800F8E323 /* Release */ = {
+		D26DDA172F5E200C00F8E323 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -244,90 +343,52 @@
 			};
 			name = Release;
 		};
-		D26DD9F22F5DFB6800F8E323 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = hr.jana.Sofascore2026;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D26DD9F32F5DFB6800F8E323 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = hr.jana.Sofascore2026;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D26DD9E12F5DFB6500F8E323 /* Build configuration list for PBXProject "Sofascore2026" */ = {
+		D26DD9FB2F5E200A00F8E323 /* Build configuration list for PBXProject "Sofascore2026" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D26DD9EF2F5DFB6800F8E323 /* Debug */,
-				D26DD9F02F5DFB6800F8E323 /* Release */,
+				D26DDA162F5E200C00F8E323 /* Debug */,
+				D26DDA172F5E200C00F8E323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D26DD9F12F5DFB6800F8E323 /* Build configuration list for PBXNativeTarget "Sofascore2026" */ = {
+		D26DDA132F5E200C00F8E323 /* Build configuration list for PBXNativeTarget "Sofascore2026" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D26DD9F22F5DFB6800F8E323 /* Debug */,
-				D26DD9F32F5DFB6800F8E323 /* Release */,
+				D26DDA142F5E200C00F8E323 /* Debug */,
+				D26DDA152F5E200C00F8E323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D26DDA182F5E222500F8E323 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D26DDA192F5E222500F8E323 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D26DDA182F5E222500F8E323 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		D26DDA1B2F5E222500F8E323 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D26DDA182F5E222500F8E323 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = D26DD9DE2F5DFB6500F8E323 /* Project object */;
+	rootObject = D26DD9F82F5E200A00F8E323 /* Project object */;
 }
