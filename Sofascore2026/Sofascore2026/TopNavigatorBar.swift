@@ -1,6 +1,3 @@
-//
-//  TopNavigatorBar.swift
-
 import Foundation
 import UIKit
 import SnapKit
@@ -22,7 +19,8 @@ class TopNavigatorBar: BaseView{
     }
     
     override func styleViews() {
-        containerView.backgroundColor = UIColor(red: 55/255, green: 71/255, blue: 245/255, alpha: 1.0)
+        
+        containerView.backgroundColor = AppColors.viewBackground
         
         logo.image = UIImage(named: "sofascore_logo")
             trophy.image = UIImage(named: "ic_trophy")
@@ -30,30 +28,27 @@ class TopNavigatorBar: BaseView{
     }
 
     override func setupConstraints() {
-        
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview() // rasiri se preko cijelog okvira
-            make.height.equalTo(48)
+            
         }
 
-        
         logo.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16) // 16px od lijeva
-            make.centerY.equalToSuperview()           // Sredina po visini
-            make.width.equalTo(100)
-            make.height.equalTo(18)
+            make.centerY.equalToSuperview()
+            make.width.equalTo(130)// Sredina po visini
+            make.height.equalTo(20)
+          
         }
 
-        
         settings.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-4) // 4px od desna
+            make.trailing.equalToSuperview().offset(-16) // 4px od desna
             make.centerY.equalToSuperview()
             make.size.equalTo(24)
         }
-
        
         trophy.snp.makeConstraints { make in
-            make.trailing.equalTo(settings.snp.leading).offset(-8) // Lijevo od postavki
+            make.trailing.equalTo(settings.snp.leading).offset(-24) // Lijevo postavki
             make.centerY.equalToSuperview()
             make.size.equalTo(24)
         }

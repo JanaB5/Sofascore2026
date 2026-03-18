@@ -1,16 +1,7 @@
-//
-//  AppDelegate.swift
-//  Sofascore2026
-//
-//  Created by akademija on 08.03.2026..
-//
-
 import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

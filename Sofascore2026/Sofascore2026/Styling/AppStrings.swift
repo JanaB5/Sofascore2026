@@ -1,0 +1,16 @@
+import UIKit
+
+enum AppStrings {
+    static let homeVsAway = "%@ vs %@"
+    static let statusPrefix = "Status: "
+    static let empty = ""
+    static let dash = "-"
+    static let fullTime = "FT"
+    static let unknownCountry = "Unknown"
+    static let liveMinuteSuffix = "'"
+    static let timeFormat = "HH:mm"
+    static let realMadrid = "Real Madrid"
+    static let barcelona = "Barcelona"
+    static let villareal = "Villareal"
+    static let mallorca = "Mallorca"
+}

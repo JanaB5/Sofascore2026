@@ -4,15 +4,18 @@ import SofaAcademic
 
 final class ViewController: UIViewController {
 
+    private let topBackgroundView = UIView()
     private let topNavigationBar = TopNavigatorBar()
-    private let sportsCategory = Sportskakategorija()
-    private let headerView = HeaderL()
+    private let sportsCategory = SportSelectorView()
+    private let headerView = LeaqueView()
     private let matchesStackView = UIStackView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1.0)
-        
+
+        view.backgroundColor = UIColor(named: "softblue")
+        topBackgroundView.backgroundColor = AppColors.viewBackground
+
         setupLayout()
         setupStackView()
         fetchData()
@@ -26,8 +29,14 @@ final class ViewController: UIViewController {
     }
 
     private func setupLayout() {
-        [topNavigationBar, sportsCategory, headerView, matchesStackView].forEach {
+        [topBackgroundView, topNavigationBar, sportsCategory, headerView, matchesStackView].forEach {
             view.addSubview($0)
+        }
+
+       topBackgroundView.snp.makeConstraints { make in
+           make.top.leading.trailing.equalToSuperview()
+           make.bottom.equalTo(sportsCategory.snp.bottom)
+            
         }
 
         topNavigationBar.snp.makeConstraints { make in
@@ -65,8 +74,10 @@ final class ViewController: UIViewController {
         }
 
         events.forEach { event in
-            let rowView = redoviView()
-            rowView.configure(with: event)
+            let viewModel = EventViewModel(event: event)
+
+            let rowView = MatchView()
+            rowView.configure(with: viewModel)
             matchesStackView.addArrangedSubview(rowView)
 
             rowView.snp.makeConstraints { make in
@@ -75,4 +86,3 @@ final class ViewController: UIViewController {
         }
     }
 }
-
