@@ -17,7 +17,7 @@ class LeaqueView: BaseView {
     }
     
     override func styleViews() {
-        backgroundColor = AppColors.mainBackground
+        backgroundColor = AppColors.mainbackground
    
         leagueIcon.image = UIImage(named: "logo_laliga")
         leagueIcon.contentMode = .scaleAspectFit
@@ -35,7 +35,10 @@ class LeaqueView: BaseView {
     override func setupConstraints() {
         leagueIcon.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.centerY.equalToSuperview()
+            
+            make.top.equalToSuperview().offset(12)
+            make.bottom.equalToSuperview().offset(-12)
+            
             make.size.equalTo(32)
         }
 
@@ -47,7 +50,7 @@ class LeaqueView: BaseView {
         arrowImageView.snp.makeConstraints { make in
             make.leading.equalTo(countryLabel.snp.trailing).offset(4)
             make.centerY.equalToSuperview()
-            make.size.equalTo(12)
+            make.size.equalTo(24)
         }
         
         leagueLabel.snp.makeConstraints { make in

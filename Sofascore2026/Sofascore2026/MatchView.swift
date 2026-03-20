@@ -5,8 +5,8 @@ import SnapKit
 
 final class MatchView: BaseView {
     
-    private let time = UILabel()
-    private let status = UILabel()
+    private let timeLabel = UILabel()
+    private let statusLabel = UILabel()
     
     private let homeTeamImageView = UIImageView()
     private let HomeTeamName = UILabel()
@@ -17,25 +17,37 @@ final class MatchView: BaseView {
     private let homeResult = UILabel()
     private let guestResult = UILabel()
     
-    private let linija =  UIView()
+    private let lineLabel =  UIView()
     
     override func addViews() {
-        [time, status, homeTeamImageView, HomeTeamName, guestTeamImageView , guestTeamName, homeResult, guestResult, linija].forEach {
-            addSubview($0)
+        [
+            timeLabel,
+            statusLabel,
+            homeTeamImageView,
+            HomeTeamName,
+            guestTeamImageView ,
+            guestTeamName,
+            homeResult,
+            guestResult,
+            lineLabel
+        ].forEach {
+            addSubview(
+                $0
+            )
+            }
         }
-    }
     
     override func styleViews() {
-        backgroundColor = AppColors.mainBackground
-        linija.backgroundColor = AppColors.secondaryLabel
+        backgroundColor = AppColors.mainbackground
+        lineLabel.backgroundColor = AppColors.onSurfaceLv4
         
-        time.font = .systemFont(ofSize: 12, weight: .regular)
-        time.textAlignment = .center
-        time.textColor = AppColors.secondaryLabel
+        timeLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        timeLabel.textAlignment = .center
+        timeLabel.textColor = AppColors.secondaryLabel
         
-        status.font = .systemFont(ofSize: 12, weight: .regular)
-        status.textAlignment = .center
-        status.textColor = AppColors.secondaryLabel
+        statusLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        statusLabel.textAlignment = .center
+        statusLabel.textColor = AppColors.secondaryLabel
         
         [HomeTeamName, guestTeamName].forEach {
             $0.font = .systemFont(ofSize: 14, weight: .regular)
@@ -57,15 +69,15 @@ final class MatchView: BaseView {
     }
     
     override func setupConstraints() {
-        time.snp.makeConstraints { make in
+        timeLabel.snp.makeConstraints { make in
             make.centerY.equalTo(HomeTeamName)
             make.leading.equalToSuperview().offset(4)
             make.width.equalTo(56)
         }
         
-        status.snp.makeConstraints { make in
+        statusLabel.snp.makeConstraints { make in
             make.centerY.equalTo(guestTeamName)
-            make.leading.equalTo(time)
+            make.leading.equalTo(timeLabel)
             make.width.equalTo(56)
         }
         
@@ -84,6 +96,7 @@ final class MatchView: BaseView {
         guestTeamImageView .snp.makeConstraints { make in
             make.leading.equalTo(homeTeamImageView)
             make.top.equalTo(homeTeamImageView.snp.bottom).offset(4)
+            make.bottom.equalToSuperview().inset(10)
             make.size.equalTo(16)
         }
         
@@ -103,10 +116,7 @@ final class MatchView: BaseView {
             make.centerY.equalTo(guestTeamName)
         }
         
-        guestTeamImageView.snp.makeConstraints { make in
-            make.bottom.lessThanOrEqualToSuperview().offset(-12)
-        }
-        linija.snp.makeConstraints { make in
+        lineLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(64)
             make.top.equalToSuperview().offset(8)
             make.bottom.equalToSuperview().offset(-8)
@@ -121,10 +131,10 @@ final class MatchView: BaseView {
             homeTeamImageView.image = viewModel.homeTeamLogo
             guestTeamImageView.image = viewModel.awayTeamLogo
 
-            time.text = viewModel.timeText
+            timeLabel.text = viewModel.timeText
 
-            status.text = viewModel.statusText
-            status.textColor = viewModel.statusColor
+            statusLabel.text = viewModel.statusText
+            statusLabel.textColor = viewModel.statusColor
 
             homeResult.text = viewModel.homeScoreText
             guestResult.text = viewModel.awayScoreText
@@ -132,6 +142,4 @@ final class MatchView: BaseView {
             homeResult.textColor = viewModel.homeScoreColor
             guestResult.textColor = viewModel.awayScoreColor
         }
-             
- 
 }

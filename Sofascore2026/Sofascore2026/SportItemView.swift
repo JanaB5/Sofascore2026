@@ -15,8 +15,7 @@ class SportItemView: BaseView {
     override func styleViews() {
         icon.contentMode = .scaleAspectFit
         
-        
-        label.textColor = AppColors.mainBackground
+        label.textColor = AppColors.mainbackground
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 14, weight: .regular)
     }
@@ -29,7 +28,7 @@ class SportItemView: BaseView {
         }
         
         label.snp.makeConstraints { make in
-            make.top.equalTo(icon.snp.bottom).offset(4) // gap 4px
+            make.top.equalTo(icon.snp.bottom).offset(4) 
             make.leading.trailing.equalToSuperview().inset(8)
             make.bottom.equalToSuperview().offset(-4)
         }

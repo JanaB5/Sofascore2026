@@ -3,7 +3,7 @@ import UIKit
 import SnapKit
 import SofaAcademic
 
-class TopNavigatorBar: BaseView{
+class TopNavigatorBarView: BaseView{
     
     private let containerView = UIView()
     private let logo = UIImageView()
@@ -23,35 +23,34 @@ class TopNavigatorBar: BaseView{
         containerView.backgroundColor = AppColors.viewBackground
         
         logo.image = UIImage(named: "sofascore_logo")
-            trophy.image = UIImage(named: "ic_trophy")
-            settings.image = UIImage(named: "ic_settings")
+        trophy.image = UIImage(named: "ic_trophy")
+        settings.image = UIImage(named: "ic_settings")
     }
 
     override func setupConstraints() {
         containerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview() // rasiri se preko cijelog okvira
+            make.edges.equalToSuperview()
             
         }
 
         logo.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16) // 16px od lijeva
-            make.centerY.equalToSuperview()
-            make.width.equalTo(130)// Sredina po visini
+            make.leading.equalToSuperview().offset(16)
+            make.top.equalToSuperview().offset(14)
+            make.bottom.equalToSuperview().offset(-14)
             make.height.equalTo(20)
           
         }
 
         settings.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-16) // 4px od desna
+            make.trailing.equalToSuperview().offset(-16)
             make.centerY.equalToSuperview()
             make.size.equalTo(24)
         }
        
         trophy.snp.makeConstraints { make in
-            make.trailing.equalTo(settings.snp.leading).offset(-24) // Lijevo postavki
+            make.trailing.equalTo(settings.snp.leading).offset(-24)
             make.centerY.equalToSuperview()
             make.size.equalTo(24)
         }
     }
-    
 }

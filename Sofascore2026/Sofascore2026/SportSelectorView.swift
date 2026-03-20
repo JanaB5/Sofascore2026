@@ -20,8 +20,8 @@ class SportSelectorView: BaseView {
     override func styleViews() {
         
         stackView.backgroundColor = AppColors.viewBackground
-        stackView.axis = .horizontal       //  vodoravno
-        stackView.distribution = .fillEqually // svi iste širine (onih 120px)
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
         stackView.alignment = .center
         
         footballTab.configure(name: "Football", imageName: "football")
