@@ -38,7 +38,7 @@ final class MatchView: BaseView {
         }
     
     override func styleViews() {
-        backgroundColor = AppColors.mainbackground
+        backgroundColor = AppColors.mainBackground
         lineLabel.backgroundColor = AppColors.onSurfaceLv4
         
         timeLabel.font = .systemFont(ofSize: 12, weight: .regular)

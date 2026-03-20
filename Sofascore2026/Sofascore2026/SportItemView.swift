@@ -15,7 +15,7 @@ class SportItemView: BaseView {
     override func styleViews() {
         icon.contentMode = .scaleAspectFit
         
-        label.textColor = AppColors.mainbackground
+        label.textColor = AppColors.mainBackground
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 14, weight: .regular)
     }

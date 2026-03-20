@@ -6,6 +6,6 @@ enum AppColors {
     static let secondaryLabel = UIColor(named: "appSecondaryLabel") ?? .gray
     static let viewBackground = UIColor(named: "viewBackground") ?? .blue
     static let red = UIColor(named: "red") ?? .red
-    static let softblue = UIColor(named: "softblue") ?? .softblue
-    static let mainbackground = UIColor(named: "mainbackground") ?? .white
+    static let softBlue = UIColor(named: "softblue") ?? .softblue
+    static let mainBackground = UIColor(named: "mainbackground") ?? .white
 }

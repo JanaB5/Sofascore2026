@@ -17,7 +17,7 @@ class LeaqueView: BaseView {
     }
     
     override func styleViews() {
-        backgroundColor = AppColors.mainbackground
+        backgroundColor = AppColors.mainBackground
    
         leagueIcon.image = UIImage(named: "logo_laliga")
         leagueIcon.contentMode = .scaleAspectFit

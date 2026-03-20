@@ -12,7 +12,7 @@ final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = AppColors.softblue
+        view.backgroundColor = AppColors.softBlue
        
         setupLayout()
         setupStackView()
