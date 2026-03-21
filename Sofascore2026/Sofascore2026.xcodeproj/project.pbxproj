@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		D234D0B72F5E2CF1004B1389 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D234D0B62F5E2CF1004B1389 /* SnapKit */; };
+		D28AD22B2F65A737008C2808 /* SofaAcademic in Frameworks */ = {isa = PBXBuildFile; productRef = D28AD22A2F65A737008C2808 /* SofaAcademic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D234D09D2F5E2C25004B1389 /* Sofascore2026.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sofascore2026.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D28AD2072F659263008C2808 /* Sofascore2026.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Sofascore2026.xcodeproj; sourceTree = "<group>"; };
+		D28AD2372F65A75E008C2808 /* Sofascore2026.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Sofascore2026.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -40,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D28AD22B2F65A737008C2808 /* SofaAcademic in Frameworks */,
 				D234D0B72F5E2CF1004B1389 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,6 +63,20 @@
 			isa = PBXGroup;
 			children = (
 				D234D09D2F5E2C25004B1389 /* Sofascore2026.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D28AD2092F659263008C2808 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D28AD2392F65A75E008C2808 /* Products */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,6 +102,7 @@
 			name = Sofascore2026;
 			packageProductDependencies = (
 				D234D0B62F5E2CF1004B1389 /* SnapKit */,
+				D28AD22A2F65A737008C2808 /* SofaAcademic */,
 			);
 			productName = Sofascore2026;
 			productReference = D234D09D2F5E2C25004B1389 /* Sofascore2026.app */;
@@ -115,10 +134,21 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				D234D0B52F5E2CF1004B1389 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				D28AD2292F65A737008C2808 /* XCRemoteSwiftPackageReference "academy" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D234D09E2F5E2C25004B1389 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D28AD2392F65A75E008C2808 /* Products */;
+					ProjectRef = D28AD2372F65A75E008C2808 /* Sofascore2026.xcodeproj */;
+				},
+				{
+					ProductGroup = D28AD2092F659263008C2808 /* Products */;
+					ProjectRef = D28AD2072F659263008C2808 /* Sofascore2026.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D234D09C2F5E2C25004B1389 /* Sofascore2026 */,
@@ -152,13 +182,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Sofascore2026/Sofascore2026.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sofascore2026/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -183,13 +214,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Sofascore2026/Sofascore2026.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sofascore2026/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -360,6 +392,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		D28AD2292F65A737008C2808 /* XCRemoteSwiftPackageReference "academy" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sofascore/academy";
+			requirement = {
+				branch = hw2;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -367,6 +407,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D234D0B52F5E2CF1004B1389 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		D28AD22A2F65A737008C2808 /* SofaAcademic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D28AD2292F65A737008C2808 /* XCRemoteSwiftPackageReference "academy" */;
+			productName = SofaAcademic;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
