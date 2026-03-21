@@ -17,7 +17,7 @@ class SportItemView: BaseView {
         
         label.textColor = AppColors.mainBackground
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = AppFonts.robotoRegular(size: 14)
     }
 
     override func setupConstraints() {

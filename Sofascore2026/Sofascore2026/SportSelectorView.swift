@@ -19,7 +19,7 @@ class SportSelectorView: BaseView {
 
     override func styleViews() {
         
-        stackView.backgroundColor = AppColors.viewBackground
+        stackView.backgroundColor = AppColors.primaryDefault
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .center

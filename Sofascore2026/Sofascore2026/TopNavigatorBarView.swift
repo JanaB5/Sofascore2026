@@ -6,25 +6,25 @@ import SofaAcademic
 class TopNavigatorBarView: BaseView{
     
     private let containerView = UIView()
-    private let logo = UIImageView()
-    private let trophy = UIImageView()
-    private let settings = UIImageView()
+    private let logoImageView = UIImageView()
+    private let trophyImageView = UIImageView()
+    private let settingsImageView = UIImageView()
     
     override func addViews() {
         addSubview(containerView)
-        containerView.addSubview(logo)
-        containerView.addSubview(trophy)
-        containerView.addSubview(settings)
+        containerView.addSubview(logoImageView)
+        containerView.addSubview(trophyImageView)
+        containerView.addSubview(settingsImageView)
         
     }
     
     override func styleViews() {
         
-        containerView.backgroundColor = AppColors.viewBackground
+        containerView.backgroundColor = AppColors.primaryDefault
         
-        logo.image = UIImage(named: "sofascore_logo")
-        trophy.image = UIImage(named: "ic_trophy")
-        settings.image = UIImage(named: "ic_settings")
+        logoImageView.image = UIImage(named: "sofascore_logo")
+        trophyImageView.image = UIImage(named: "ic_trophy")
+        settingsImageView.image = UIImage(named: "ic_settings")
     }
 
     override func setupConstraints() {
@@ -33,7 +33,7 @@ class TopNavigatorBarView: BaseView{
             
         }
 
-        logo.snp.makeConstraints { make in
+        logoImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(14)
             make.bottom.equalToSuperview().offset(-14)
@@ -41,14 +41,14 @@ class TopNavigatorBarView: BaseView{
           
         }
 
-        settings.snp.makeConstraints { make in
+        settingsImageView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-16)
             make.centerY.equalToSuperview()
             make.size.equalTo(24)
         }
        
-        trophy.snp.makeConstraints { make in
-            make.trailing.equalTo(settings.snp.leading).offset(-24)
+        trophyImageView.snp.makeConstraints { make in
+            make.trailing.equalTo(settingsImageView.snp.leading).offset(-24)
             make.centerY.equalToSuperview()
             make.size.equalTo(24)
         }

@@ -9,55 +9,53 @@ final class MatchView: BaseView {
     private let statusLabel = UILabel()
     
     private let homeTeamImageView = UIImageView()
-    private let HomeTeamName = UILabel()
+    private let HomeTeamNameLabel = UILabel()
     
     private let guestTeamImageView = UIImageView()
-    private let guestTeamName = UILabel()
+    private let guestTeamNameLabel = UILabel()
     
-    private let homeResult = UILabel()
-    private let guestResult = UILabel()
+    private let homeResultLabel = UILabel()
+    private let guestResultLabel = UILabel()
     
-    private let lineLabel =  UIView()
+    private let lineView =  UIView()
     
     override func addViews() {
         [
             timeLabel,
             statusLabel,
             homeTeamImageView,
-            HomeTeamName,
-            guestTeamImageView ,
-            guestTeamName,
-            homeResult,
-            guestResult,
-            lineLabel
+            HomeTeamNameLabel,
+            guestTeamImageView,
+            guestTeamNameLabel,
+            homeResultLabel,
+            guestResultLabel,
+            lineView
         ].forEach {
-            addSubview(
-                $0
-            )
+            addSubview($0)
             }
         }
     
     override func styleViews() {
         backgroundColor = AppColors.mainBackground
-        lineLabel.backgroundColor = AppColors.onSurfaceLv4
+        lineView.backgroundColor = AppColors.onSurfaceLv4
         
-        timeLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        timeLabel.font = AppFonts.robotoCondensed(size: 12)
         timeLabel.textAlignment = .center
         timeLabel.textColor = AppColors.secondaryLabel
         
-        statusLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        statusLabel.font = AppFonts.robotoCondensed(size: 12)
         statusLabel.textAlignment = .center
         statusLabel.textColor = AppColors.secondaryLabel
         
-        [HomeTeamName, guestTeamName].forEach {
-            $0.font = .systemFont(ofSize: 14, weight: .regular)
+        [HomeTeamNameLabel, guestTeamNameLabel].forEach {
+            $0.font = AppFonts.robotoRegular(size: 14)
             $0.textColor = AppColors.primaryLabel
             $0.numberOfLines = 1
             $0.lineBreakMode = .byTruncatingTail
         }
         
-        [homeResult, guestResult].forEach {
-            $0.font = .systemFont(ofSize: 14, weight: .regular)
+        [homeResultLabel, guestResultLabel].forEach {
+            $0.font = AppFonts.robotoRegular(size: 14)
             $0.textAlignment = .right
             $0.textColor = AppColors.primaryLabel
         }
@@ -70,13 +68,13 @@ final class MatchView: BaseView {
     
     override func setupConstraints() {
         timeLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(HomeTeamName)
+            make.centerY.equalTo(HomeTeamNameLabel)
             make.leading.equalToSuperview().offset(4)
             make.width.equalTo(56)
         }
         
         statusLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(guestTeamName)
+            make.centerY.equalTo(guestTeamNameLabel)
             make.leading.equalTo(timeLabel)
             make.width.equalTo(56)
         }
@@ -87,36 +85,36 @@ final class MatchView: BaseView {
             make.size.equalTo(16)
         }
         
-        HomeTeamName.snp.makeConstraints { make in
+        HomeTeamNameLabel.snp.makeConstraints { make in
             make.leading.equalTo(homeTeamImageView.snp.trailing).offset(8)
             make.centerY.equalTo(homeTeamImageView)
-            make.trailing.lessThanOrEqualTo(homeResult.snp.leading).offset(-16)
+            make.trailing.lessThanOrEqualTo(homeResultLabel.snp.leading).offset(-16)
         }
         
-        guestTeamImageView .snp.makeConstraints { make in
+        guestTeamImageView.snp.makeConstraints { make in
             make.leading.equalTo(homeTeamImageView)
             make.top.equalTo(homeTeamImageView.snp.bottom).offset(4)
             make.bottom.equalToSuperview().inset(10)
             make.size.equalTo(16)
         }
         
-        guestTeamName.snp.makeConstraints { make in
+        guestTeamNameLabel.snp.makeConstraints { make in
             make.leading.equalTo(guestTeamImageView.snp.trailing).offset(8)
             make.centerY.equalTo(guestTeamImageView)
-            make.trailing.lessThanOrEqualTo(guestResult.snp.leading).offset(-16)
+            make.trailing.lessThanOrEqualTo(guestResultLabel.snp.leading).offset(-16)
         }
         
-        homeResult.snp.makeConstraints { make in
+        homeResultLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-16)
-            make.centerY.equalTo(HomeTeamName)
+            make.centerY.equalTo(HomeTeamNameLabel)
         }
         
-        guestResult.snp.makeConstraints { make in
+        guestResultLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-16)
-            make.centerY.equalTo(guestTeamName)
+            make.centerY.equalTo(guestTeamNameLabel)
         }
         
-        lineLabel.snp.makeConstraints { make in
+        lineView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(64)
             make.top.equalToSuperview().offset(8)
             make.bottom.equalToSuperview().offset(-8)
@@ -125,8 +123,8 @@ final class MatchView: BaseView {
     }
     
     func configure(with viewModel: EventViewModel) {
-            HomeTeamName.text = viewModel.homeTeamName
-            guestTeamName.text = viewModel.awayTeamName
+            HomeTeamNameLabel.text = viewModel.homeTeamName
+            guestTeamNameLabel.text = viewModel.awayTeamName
 
             homeTeamImageView.image = viewModel.homeTeamLogo
             guestTeamImageView.image = viewModel.awayTeamLogo
@@ -136,10 +134,10 @@ final class MatchView: BaseView {
             statusLabel.text = viewModel.statusText
             statusLabel.textColor = viewModel.statusColor
 
-            homeResult.text = viewModel.homeScoreText
-            guestResult.text = viewModel.awayScoreText
+            homeResultLabel.text = viewModel.homeScoreText
+            guestResultLabel.text = viewModel.awayScoreText
 
-            homeResult.textColor = viewModel.homeScoreColor
-            guestResult.textColor = viewModel.awayScoreColor
+            homeResultLabel.textColor = viewModel.homeScoreColor
+            guestResultLabel.textColor = viewModel.awayScoreColor
         }
 }
