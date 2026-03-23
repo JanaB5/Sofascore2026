@@ -7,12 +7,16 @@ final class ViewController: UIViewController {
     private let topBackgroundView = UIView()
     private let topNavigationBar = TopNavigatorBarView()
     private let sportsCategory = SportSelectorView()
-    private let leagueView = LeaqueView()
-    private let matchesStackView = UIStackView()
+
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    private let stackView = UIStackView()
+
+    private var sections: [(league: League, events: [Event])] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         addViews()
         styleViews()
         setupConstraints()
@@ -20,18 +24,34 @@ final class ViewController: UIViewController {
     }
 
     private func fetchData() {
-        let dataSource = Homework2DataSource()
-        let events = dataSource.laLigaEvents()
+        let dataSource = Homework3DataSource()
+        let allEvents = dataSource.events()
 
-        if let firstEvent = events.first, let leagueData = firstEvent.league {
-            leagueView.configure(with: leagueData)
+        let grouped = Dictionary(grouping: allEvents) { $0.league?.id ?? 0 }
+
+        self.sections = grouped.compactMap { (_, value) in
+            guard let league = value.first?.league else { return nil }
+            return (league: league, events: value)
+        }
+        .sorted { $0.league.name < $1.league.name }
+
+        reloadLeagueCards()
+    }
+
+    private func reloadLeagueCards() {
+        stackView.arrangedSubviews.forEach {
+            stackView.removeArrangedSubview($0)
+            $0.removeFromSuperview()
         }
 
-        events.forEach { event in
-            let viewModel = EventViewModel(event: event)
-            let rowView = MatchView()
-            rowView.configure(with: viewModel)
-            matchesStackView.addArrangedSubview(rowView)
+        for section in sections {
+            let card = LeagueCardView()
+            card.configure(with: section.league, events: section.events)
+            stackView.addArrangedSubview(card)
+
+            card.snp.makeConstraints { make in
+                make.height.equalTo(288)
+            }
         }
     }
 }
@@ -39,19 +59,27 @@ final class ViewController: UIViewController {
 extension ViewController: BaseViewProtocol {
 
     func addViews() {
-        [topBackgroundView, topNavigationBar, sportsCategory, leagueView, matchesStackView].forEach {
-            view.addSubview($0)
-        }
+        [
+            topBackgroundView,
+            topNavigationBar,
+            sportsCategory,
+            scrollView
+        ].forEach { view.addSubview($0) }
+
+        scrollView.addSubview(contentView)
+        contentView.addSubview(stackView)
     }
 
     func styleViews() {
         view.backgroundColor = AppColors.softBlue
         topBackgroundView.backgroundColor = AppColors.primaryDefault
-        
-        matchesStackView.axis = .vertical
-        matchesStackView.spacing = 0
-        matchesStackView.alignment = .fill
-        matchesStackView.distribution = .fill
+
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.alwaysBounceVertical = true
+        stackView.axis = .vertical
+        stackView.spacing = 2
+        stackView.alignment = .fill
+        stackView.distribution = .fill
     }
 
     func setupConstraints() {
@@ -70,14 +98,19 @@ extension ViewController: BaseViewProtocol {
             make.leading.trailing.equalToSuperview()
         }
 
-        leagueView.snp.makeConstraints { make in
+        scrollView.snp.makeConstraints { make in
             make.top.equalTo(sportsCategory.snp.bottom).offset(96)
             make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
 
-        matchesStackView.snp.makeConstraints { make in
-            make.top.equalTo(leagueView.snp.bottom)
-            make.leading.trailing.equalToSuperview()
+        contentView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView.contentLayoutGuide)
+            make.width.equalTo(scrollView.frameLayoutGuide)
+        }
+
+        stackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 }

@@ -30,9 +30,7 @@ final class MatchView: BaseView {
             homeResultLabel,
             guestResultLabel,
             lineView
-        ].forEach {
-            addSubview($0)
-            }
+        ].forEach { addSubview($0) }
         }
     
     override func styleViews() {

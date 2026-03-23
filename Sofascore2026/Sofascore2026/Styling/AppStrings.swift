@@ -13,4 +13,11 @@ enum AppStrings {
     static let barcelona = "Barcelona"
     static let villareal = "Villareal"
     static let mallorca = "Mallorca"
+    static let chelsea = "Chelsea"
+    static let manCity = "Man City"
+    static let liverpool = "Liverpool"
+    static let arsenal = "Arsenal"
+    static let manUtd = "Man Utd"
+    static let newcastle = "Newcastle"
+    
 }

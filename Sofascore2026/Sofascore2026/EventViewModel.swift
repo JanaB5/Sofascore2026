@@ -83,6 +83,12 @@ struct EventViewModel {
         case AppStrings.barcelona:  return UIImage(named: "barcelona")
         case AppStrings.villareal:  return UIImage(named: "villareal")
         case AppStrings.mallorca:   return UIImage(named: "mallorca")
+        case AppStrings.newcastle:   return UIImage(named: "newcastle")
+        case AppStrings.manUtd:   return UIImage(named: "manUtd")
+        case AppStrings.manCity:   return UIImage(named: "manCity")
+        case AppStrings.liverpool:   return UIImage(named: "liverpool")
+        case AppStrings.arsenal:   return UIImage(named: "arsenal")
+        case AppStrings.chelsea:   return UIImage(named: "chelsea")
         default: return nil
         }
     }
