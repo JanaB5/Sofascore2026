@@ -22,6 +22,7 @@ final class LeagueHeaderReusableView: UICollectionReusableView {
     }
 
     func configure(with data: League) {
-        leagueView.configure(with: data)
+        let viewModel = LeagueViewModel(league: data)
+        leagueView.configure(with: viewModel)
     }
 }

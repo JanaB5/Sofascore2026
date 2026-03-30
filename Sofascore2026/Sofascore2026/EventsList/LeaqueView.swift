@@ -18,7 +18,6 @@ class LeaqueView: BaseView {
     
     override func styleViews() {
         backgroundColor = AppColors.mainBackground
-   
         leagueIcon.contentMode = .scaleAspectFit
         
         countryLabel.font = AppFonts.robotoBold(size: 14)
@@ -42,6 +41,7 @@ class LeaqueView: BaseView {
         countryLabel.snp.makeConstraints { make in
             make.leading.equalTo(leagueIcon.snp.trailing).offset(32)
             make.centerY.equalToSuperview()
+            make.height.equalTo(16)
         }
         
         arrowImageView.snp.makeConstraints { make in
@@ -54,23 +54,13 @@ class LeaqueView: BaseView {
             make.leading.equalTo(arrowImageView.snp.trailing).offset(4)
             make.centerY.equalToSuperview()
             make.trailing.lessThanOrEqualToSuperview().offset(-16)
+            make.height.equalTo(16)
         }
     }
     
-    func configure(with league: League) {
-        countryLabel.text = league.country?.name ?? AppStrings.unknownCountry
-        leagueLabel.text = league.name
-        leagueIcon.image = Self.logoImage(for: league.name)
-    }
-    
-    private static func logoImage(for leagueName: String) -> UIImage? {
-        switch leagueName {
-        case "LaLiga":
-            return UIImage(named: "logo_laliga")
-        case "Premier League":
-            return UIImage(named: "primaryLeague")
-        default:
-            return UIImage(named: "logo_laliga")
-        }
+    func configure(with viewModel: LeagueViewModel) {
+        countryLabel.text = viewModel.countryName
+        leagueLabel.text = viewModel.leagueName
+        leagueIcon.image = viewModel.leagueLogo
     }
 }

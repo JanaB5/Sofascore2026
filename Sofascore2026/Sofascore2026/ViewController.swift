@@ -8,19 +8,33 @@ final class ViewController: UIViewController {
     private let topNavigationBar = TopNavigatorBarView()
     private let sportsCategory = SportSelectorView()
 
-    private let scrollView = UIScrollView()
-    private let contentView = UIView()
-    private let stackView = UIStackView()
-
+    private var collectionView: UICollectionView!
     private var sections: [(league: League, events: [Event])] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupCollectionView()
         addViews()
         styleViews()
         setupConstraints()
         fetchData()
+    }
+
+    private func setupCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.sectionHeadersPinToVisibleBounds = true
+        layout.minimumLineSpacing = 0
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = .none
+        collectionView.showsVerticalScrollIndicator = false
+        
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "SpacerCell")
+        collectionView.register(MatchCollectionViewCell.self, forCellWithReuseIdentifier: "MatchCell")
+        collectionView.register(LeagueHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "LeagueHeader")
     }
 
     private func fetchData() {
@@ -35,51 +49,21 @@ final class ViewController: UIViewController {
         }
         .sorted { $0.league.name < $1.league.name }
 
-        reloadLeagueCards()
-    }
-
-    private func reloadLeagueCards() {
-        stackView.arrangedSubviews.forEach {
-            stackView.removeArrangedSubview($0)
-            $0.removeFromSuperview()
-        }
-
-        for section in sections {
-            let card = LeagueCardView()
-            card.configure(with: section.league, events: section.events)
-            stackView.addArrangedSubview(card)
-
-            card.snp.makeConstraints { make in
-                make.height.equalTo(288)
-            }
-        }
+        collectionView.reloadData()
     }
 }
 
 extension ViewController: BaseViewProtocol {
 
     func addViews() {
-        [
-            topBackgroundView,
-            topNavigationBar,
-            sportsCategory,
-            scrollView
-        ].forEach { view.addSubview($0) }
-
-        scrollView.addSubview(contentView)
-        contentView.addSubview(stackView)
+        [topBackgroundView, topNavigationBar, sportsCategory, collectionView].forEach {
+            view.addSubview($0)
+        }
     }
 
     func styleViews() {
         view.backgroundColor = AppColors.softBlue
         topBackgroundView.backgroundColor = AppColors.primaryDefault
-
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.alwaysBounceVertical = true
-        stackView.axis = .vertical
-        stackView.spacing = 2
-        stackView.alignment = .fill
-        stackView.distribution = .fill
     }
 
     func setupConstraints() {
@@ -98,19 +82,80 @@ extension ViewController: BaseViewProtocol {
             make.leading.trailing.equalToSuperview()
         }
 
-        scrollView.snp.makeConstraints { make in
-            make.top.equalTo(sportsCategory.snp.bottom).offset(96)
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(sportsCategory.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
+    }
+}
 
-        contentView.snp.makeConstraints { make in
-            make.edges.equalTo(scrollView.contentLayoutGuide)
-            make.width.equalTo(scrollView.frameLayoutGuide)
+extension ViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sections.count + 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
+        return sections[section - 1].events.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SpacerCell", for: indexPath)
+            cell.backgroundColor = .clear
+            return cell
         }
 
-        stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MatchCell", for: indexPath) as? MatchCollectionViewCell else {
+            return UICollectionViewCell()
         }
+        
+        let event = sections[indexPath.section - 1].events[indexPath.row]
+        cell.configure(with: EventViewModel(event: event))
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "LeagueHeader", for: indexPath) as? LeagueHeaderReusableView else {
+            return UICollectionReusableView()
+        }
+
+        header.configure(with: sections[indexPath.section - 1].league)
+        return header
+    }
+}
+
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.frame.width
+        
+        if indexPath.section == 0 {
+            return CGSize(width: width, height: 96)
+        }
+        return CGSize(width: width, height: 60)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return .zero
+        }
+        return CGSize(width: collectionView.frame.width, height: 48)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if section == 0 {
+            return .zero
+        }
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }

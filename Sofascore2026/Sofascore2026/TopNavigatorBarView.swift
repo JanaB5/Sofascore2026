@@ -19,9 +19,7 @@ class TopNavigatorBarView: BaseView{
     }
     
     override func styleViews() {
-        
         containerView.backgroundColor = AppColors.primaryDefault
-        
         logoImageView.image = UIImage(named: "sofascore_logo")
         trophyImageView.image = UIImage(named: "ic_trophy")
         settingsImageView.image = UIImage(named: "ic_settings")

@@ -19,5 +19,7 @@ enum AppStrings {
     static let arsenal = "Arsenal"
     static let manUtd = "Man Utd"
     static let newcastle = "Newcastle"
-    
+    static let football = "Football"
+    static let basketball = "Basketball"
+    static let amFootball = "Am. Football"
 }

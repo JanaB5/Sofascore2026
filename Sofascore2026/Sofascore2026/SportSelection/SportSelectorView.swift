@@ -23,9 +23,10 @@ class SportSelectorView: BaseView {
         stackView.distribution = .fillEqually
         stackView.alignment = .fill 
         
-        footballTab.configure(name: "Football", imageName: "football")
-        basketballTab.configure(name: "Basketball", imageName: "basketball")
-        amFootballTab.configure(name: "Am. Football", imageName: "amfootball")
+        footballTab.configure(with: Sport.football.viewModel)
+        basketballTab.configure(with: Sport.basketball.viewModel)
+        amFootballTab.configure(with: Sport.amFootball.viewModel)
+        
         selectTab(footballTab)
     }
 
@@ -35,7 +36,6 @@ class SportSelectorView: BaseView {
         }
     }
 
-  
     override func setupGestureRecognizers() {
         footballTab.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(footballTapped)))
         basketballTab.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(basketballTapped)))
