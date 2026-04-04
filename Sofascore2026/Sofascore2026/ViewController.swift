@@ -7,9 +7,21 @@ final class ViewController: UIViewController {
     private let topBackgroundView = UIView()
     private let topNavigationBar = TopNavigatorBarView()
     private let sportsCategory = SportSelectorView()
-
-    private var collectionView: UICollectionView!
     private var sections: [(league: League, events: [Event])] = []
+    private let initialTopSpacing: CGFloat = 96
+    private var collectionTopConstraint: Constraint?
+    
+    private var flowLayout: UICollectionViewFlowLayout {
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .vertical
+            layout.sectionHeadersPinToVisibleBounds = true
+            layout.minimumLineSpacing = 0
+            return layout
+        }
+        private lazy var collectionView: UICollectionView = .init(
+            frame: .zero,
+            collectionViewLayout: flowLayout
+        )
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,18 +33,11 @@ final class ViewController: UIViewController {
     }
 
     private func setupCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.sectionHeadersPinToVisibleBounds = true
-        layout.minimumLineSpacing = 0
-        
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .none
         collectionView.showsVerticalScrollIndicator = false
         
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "SpacerCell")
         collectionView.register(MatchCollectionViewCell.self, forCellWithReuseIdentifier: "MatchCell")
         collectionView.register(LeagueHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "LeagueHeader")
     }
@@ -83,9 +88,9 @@ extension ViewController: BaseViewProtocol {
         }
 
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(sportsCategory.snp.bottom)
+            self.collectionTopConstraint = make.top.equalTo(sportsCategory.snp.bottom).offset(initialTopSpacing).constraint
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalToSuperview()
         }
     }
 }
@@ -93,28 +98,20 @@ extension ViewController: BaseViewProtocol {
 extension ViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sections.count + 1
+        return sections.count
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        }
-        return sections[section - 1].events.count
+        return sections[section].events.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SpacerCell", for: indexPath)
-            cell.backgroundColor = .clear
-            return cell
-        }
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MatchCell", for: indexPath) as? MatchCollectionViewCell else {
             return UICollectionViewCell()
         }
         
-        let event = sections[indexPath.section - 1].events[indexPath.row]
+        let event = sections[indexPath.section].events[indexPath.row]
         cell.configure(with: EventViewModel(event: event))
         return cell
     }
@@ -124,7 +121,7 @@ extension ViewController: UICollectionViewDataSource {
             return UICollectionReusableView()
         }
 
-        header.configure(with: sections[indexPath.section - 1].league)
+        header.configure(with: sections[indexPath.section].league)
         return header
     }
 }
@@ -134,28 +131,24 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width
         
-        if indexPath.section == 0 {
-            return CGSize(width: width, height: 96)
-        }
-        return CGSize(width: width, height: 60)
+        return CGSize(width: width, height: 56)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if section == 0 {
-            return .zero
-        }
-        return CGSize(width: collectionView.frame.width, height: 48)
+        
+        return CGSize(width: collectionView.frame.width, height: 56)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if section == 0 {
-            return .zero
-        }
         
-        return UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
     }
+}
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+extension ViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offset = max(0, initialTopSpacing - scrollView.contentOffset.y)
+        collectionTopConstraint?.update(offset: offset)
     }
 }

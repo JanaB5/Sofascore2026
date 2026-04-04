@@ -38,6 +38,7 @@ class SportItemView: BaseView {
             make.top.equalTo(iconImageView.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview().inset(8)
             make.bottom.equalToSuperview().offset(-8)
+            make.height.equalTo(16)
         }
         
         selectedIndicatorView.snp.makeConstraints { make in

@@ -8,21 +8,32 @@ final class LeagueHeaderReusableView: UICollectionReusableView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupHeader()
+        addViews()
+        styleViews()
+        setupConstraints()
     }
 
     required init?(coder: NSCoder) { fatalError() }
 
-    private func setupHeader() {
-        addSubview(leagueView)
-
-        leagueView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
-
     func configure(with data: League) {
         let viewModel = LeagueViewModel(league: data)
         leagueView.configure(with: viewModel)
+    }
+}
+
+extension LeagueHeaderReusableView: BaseViewProtocol {
+    
+    func addViews() {
+        addSubview(leagueView)
+    }
+
+    func styleViews() {
+        backgroundColor = .clear
+    }
+
+    func setupConstraints() {
+        leagueView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
