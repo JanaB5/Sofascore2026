@@ -8,8 +8,6 @@ final class ViewController: UIViewController {
     private let topNavigationBar = TopNavigatorBarView()
     private let sportsCategory = SportSelectorView()
     private var sections: [(league: League, events: [Event])] = []
-    private let initialTopSpacing: CGFloat = 96
-    private var collectionTopConstraint: Constraint?
     
     private var flowLayout: UICollectionViewFlowLayout {
             let layout = UICollectionViewFlowLayout()
@@ -40,6 +38,7 @@ final class ViewController: UIViewController {
         
         collectionView.register(MatchCollectionViewCell.self, forCellWithReuseIdentifier: "MatchCell")
         collectionView.register(LeagueHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "LeagueHeader")
+        collectionView.register(FooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "FooterView")
     }
 
     private func fetchData() {
@@ -88,7 +87,7 @@ extension ViewController: BaseViewProtocol {
         }
 
         collectionView.snp.makeConstraints { make in
-            self.collectionTopConstraint = make.top.equalTo(sportsCategory.snp.bottom).offset(initialTopSpacing).constraint
+            make.top.equalTo(sportsCategory.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
@@ -117,12 +116,26 @@ extension ViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "LeagueHeader", for: indexPath) as? LeagueHeaderReusableView else {
-            return UICollectionReusableView()
+        if kind == UICollectionView.elementKindSectionHeader {
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "LeagueHeader", for: indexPath) as? LeagueHeaderReusableView else {
+                return UICollectionReusableView()
+            }
+
+            header.configure(with: sections[indexPath.section].league)
+            return header
         }
 
-        header.configure(with: sections[indexPath.section].league)
-        return header
+        if kind == UICollectionView.elementKindSectionFooter {
+            guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "FooterView", for: indexPath) as? FooterView else {
+                return UICollectionReusableView()
+            }
+
+            let isLast = indexPath.section == sections.count - 1
+            footer.configure(isLast: isLast)
+            return footer
+        }
+
+        return UICollectionReusableView()
     }
 }
 
@@ -139,16 +152,9 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.frame.width, height: 56)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-        return UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 8)
     }
 }
 
-extension ViewController: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset = max(0, initialTopSpacing - scrollView.contentOffset.y)
-        collectionTopConstraint?.update(offset: offset)
-    }
-}
+
