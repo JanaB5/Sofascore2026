@@ -1,12 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "Real_Madrid_CF.svg.png",
+      "filename" : "Image.png",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }

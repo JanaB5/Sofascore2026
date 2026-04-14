@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D21B86ED2F7142E9007BCC83 /* SofaAcademic in Frameworks */ = {isa = PBXBuildFile; productRef = D21B86EC2F7142E9007BCC83 /* SofaAcademic */; };
 		D234D0B72F5E2CF1004B1389 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D234D0B62F5E2CF1004B1389 /* SnapKit */; };
-		D28AD22B2F65A737008C2808 /* SofaAcademic in Frameworks */ = {isa = PBXBuildFile; productRef = D28AD22A2F65A737008C2808 /* SofaAcademic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D28AD22B2F65A737008C2808 /* SofaAcademic in Frameworks */,
+				D21B86ED2F7142E9007BCC83 /* SofaAcademic in Frameworks */,
 				D234D0B72F5E2CF1004B1389 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,7 +102,7 @@
 			name = Sofascore2026;
 			packageProductDependencies = (
 				D234D0B62F5E2CF1004B1389 /* SnapKit */,
-				D28AD22A2F65A737008C2808 /* SofaAcademic */,
+				D21B86EC2F7142E9007BCC83 /* SofaAcademic */,
 			);
 			productName = Sofascore2026;
 			productReference = D234D09D2F5E2C25004B1389 /* Sofascore2026.app */;
@@ -134,7 +134,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				D234D0B52F5E2CF1004B1389 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				D28AD2292F65A737008C2808 /* XCRemoteSwiftPackageReference "academy" */,
+				D21B86EB2F7142E9007BCC83 /* XCRemoteSwiftPackageReference "academy" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D234D09E2F5E2C25004B1389 /* Products */;
@@ -299,6 +299,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -355,6 +356,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -384,6 +386,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D21B86EB2F7142E9007BCC83 /* XCRemoteSwiftPackageReference "academy" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sofascore/academy";
+			requirement = {
+				branch = hw3;
+				kind = branch;
+			};
+		};
 		D234D0B52F5E2CF1004B1389 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -392,26 +402,18 @@
 				minimumVersion = 5.7.1;
 			};
 		};
-		D28AD2292F65A737008C2808 /* XCRemoteSwiftPackageReference "academy" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sofascore/academy";
-			requirement = {
-				branch = hw2;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D21B86EC2F7142E9007BCC83 /* SofaAcademic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D21B86EB2F7142E9007BCC83 /* XCRemoteSwiftPackageReference "academy" */;
+			productName = SofaAcademic;
+		};
 		D234D0B62F5E2CF1004B1389 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D234D0B52F5E2CF1004B1389 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		D28AD22A2F65A737008C2808 /* SofaAcademic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D28AD2292F65A737008C2808 /* XCRemoteSwiftPackageReference "academy" */;
-			productName = SofaAcademic;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

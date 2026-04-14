@@ -9,7 +9,7 @@ final class MatchView: BaseView {
     private let statusLabel = UILabel()
     
     private let homeTeamImageView = UIImageView()
-    private let HomeTeamNameLabel = UILabel()
+    private let homeTeamNameLabel = UILabel()
     
     private let guestTeamImageView = UIImageView()
     private let guestTeamNameLabel = UILabel()
@@ -24,16 +24,14 @@ final class MatchView: BaseView {
             timeLabel,
             statusLabel,
             homeTeamImageView,
-            HomeTeamNameLabel,
+            homeTeamNameLabel,
             guestTeamImageView,
             guestTeamNameLabel,
             homeResultLabel,
             guestResultLabel,
             lineView
-        ].forEach {
-            addSubview($0)
-            }
-        }
+        ].forEach { addSubview($0) }
+    }
     
     override func styleViews() {
         backgroundColor = AppColors.mainBackground
@@ -47,7 +45,7 @@ final class MatchView: BaseView {
         statusLabel.textAlignment = .center
         statusLabel.textColor = AppColors.secondaryLabel
         
-        [HomeTeamNameLabel, guestTeamNameLabel].forEach {
+        [homeTeamNameLabel, guestTeamNameLabel].forEach {
             $0.font = AppFonts.robotoRegular(size: 14)
             $0.textColor = AppColors.primaryLabel
             $0.numberOfLines = 1
@@ -68,15 +66,17 @@ final class MatchView: BaseView {
     
     override func setupConstraints() {
         timeLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(HomeTeamNameLabel)
+            make.centerY.equalTo(homeTeamNameLabel)
             make.leading.equalToSuperview().offset(4)
             make.width.equalTo(56)
+            make.height.equalTo(16)
         }
         
         statusLabel.snp.makeConstraints { make in
             make.centerY.equalTo(guestTeamNameLabel)
             make.leading.equalTo(timeLabel)
             make.width.equalTo(56)
+            make.height.equalTo(16)
         }
         
         homeTeamImageView.snp.makeConstraints { make in
@@ -85,10 +85,11 @@ final class MatchView: BaseView {
             make.size.equalTo(16)
         }
         
-        HomeTeamNameLabel.snp.makeConstraints { make in
+        homeTeamNameLabel.snp.makeConstraints { make in
             make.leading.equalTo(homeTeamImageView.snp.trailing).offset(8)
             make.centerY.equalTo(homeTeamImageView)
             make.trailing.lessThanOrEqualTo(homeResultLabel.snp.leading).offset(-16)
+            make.height.equalTo(16)
         }
         
         guestTeamImageView.snp.makeConstraints { make in
@@ -102,16 +103,19 @@ final class MatchView: BaseView {
             make.leading.equalTo(guestTeamImageView.snp.trailing).offset(8)
             make.centerY.equalTo(guestTeamImageView)
             make.trailing.lessThanOrEqualTo(guestResultLabel.snp.leading).offset(-16)
+            make.height.equalTo(16)
         }
         
         homeResultLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-16)
-            make.centerY.equalTo(HomeTeamNameLabel)
+            make.centerY.equalTo(homeTeamNameLabel)
+            make.height.equalTo(16)
         }
         
         guestResultLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-16)
             make.centerY.equalTo(guestTeamNameLabel)
+            make.height.equalTo(16)
         }
         
         lineView.snp.makeConstraints { make in
@@ -123,7 +127,7 @@ final class MatchView: BaseView {
     }
     
     func configure(with viewModel: EventViewModel) {
-            HomeTeamNameLabel.text = viewModel.homeTeamName
+            homeTeamNameLabel.text = viewModel.homeTeamName
             guestTeamNameLabel.text = viewModel.awayTeamName
 
             homeTeamImageView.image = viewModel.homeTeamLogo
