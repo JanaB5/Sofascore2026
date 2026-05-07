@@ -16,4 +16,6 @@ enum AppFonts {
     static let header = robotoBold(size: 24)
     static let body = robotoRegular(size: 16)
     static let status = robotoCondensed(size: 14)
+    static let eventHeader = robotoBold(size: 12)
+    static let eventResult = robotoBold(size: 32)
 }

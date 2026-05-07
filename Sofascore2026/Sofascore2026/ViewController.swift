@@ -28,6 +28,7 @@ final class ViewController: UIViewController {
         styleViews()
         setupConstraints()
         fetchData()
+        topNavigationBar.delegate = self
     }
 
     private func setupCollectionView() {
@@ -155,6 +156,25 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 8)
     }
+
 }
 
+extension ViewController: TopNavigatorBarDelegate {
+    func didTapSettings() {
+        let settingsVC = SettingsViewController()
+        settingsVC.modalPresentationStyle = .fullScreen
+        present(settingsVC, animated: true)
+    }
+}
+
+extension ViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedEvent = sections[indexPath.section].events[indexPath.row]
+        let selectedLeague = sections[indexPath.section].league
+        
+        let detailsVC = EventDetailsViewController(event: selectedEvent, league: selectedLeague)
+        navigationController?.pushViewController(detailsVC, animated: true)
+    }
+}
 
