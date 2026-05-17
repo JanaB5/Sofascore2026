@@ -55,8 +55,14 @@ struct ApiEvent: Codable {
         )
         
         var eventStatus: EventStatus = .notStarted
-        if status == "in_progress" { eventStatus = .inProgress }
-        else if status == "finished" { eventStatus = .finished }
+        let lowerStatus = status.lowercased()
+        
+        if lowerStatus == "in_progress" || lowerStatus == "inprogress" || lowerStatus == "live" {
+            eventStatus = .inProgress
+        }
+        else if lowerStatus == "finished" || lowerStatus == "ended" || lowerStatus == "ft" {
+            eventStatus = .finished
+        }
         
         return Event(
             id: id,

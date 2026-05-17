@@ -4,7 +4,6 @@ import SofaAcademic
 final class APIClient {
     
     static let shared = APIClient()
-    
     private let baseURL = "https://sofascore-ios-academy-be-c63faa1a2212.herokuapp.com"
     
     private init() {}
@@ -39,7 +38,6 @@ final class APIClient {
                 completion(.failure(error))
             }
         }
-        
         task.resume()
     }
     
@@ -56,8 +54,6 @@ final class APIClient {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         let decodedEvents = try decoder.decode([ApiEvent].self, from: data)
-        let domainEvents = decodedEvents.map { $0.toDomain() }
-        
-        return domainEvents
+        return decodedEvents.map { $0.toDomain() }
     }
 }
