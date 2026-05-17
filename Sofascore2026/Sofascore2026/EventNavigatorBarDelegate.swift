@@ -54,9 +54,9 @@ final class EventNavigationBarView: BaseView {
         }
         
         backButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(4)
-            make.centerY.equalToSuperview()
-            make.size.equalTo(44)
+            make.leading.equalToSuperview().inset(16)
+            make.top.bottom.equalToSuperview().inset(12)
+            make.size.equalTo(24)
         }
         
         infoStackView.snp.makeConstraints { make in
@@ -74,18 +74,8 @@ final class EventNavigationBarView: BaseView {
         delegate?.didTapBack()
     }
     
-    func configure(with event: Event, league: League) {
-            let leagueVM = LeagueViewModel(league: league)
-            
-            let sportName = "Football"
-            let countryName = leagueVM.countryName ?? ""
-            let leagueName = leagueVM.leagueName ?? ""
-            
-            let navBarText = [sportName, countryName, leagueName]
-                .filter { !$0.isEmpty }
-                .joined(separator: ", ")
-            
-            detailsLabel.text = navBarText
-            leagueIconImageView.image = leagueVM.leagueLogo
-        }
+    func configure(with viewModel: EventNavigationBarViewModel) {
+        detailsLabel.text = viewModel.navBarText
+        leagueIconImageView.image = viewModel.leagueLogo
+    }
 }

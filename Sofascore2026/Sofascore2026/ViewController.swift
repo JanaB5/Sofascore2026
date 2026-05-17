@@ -27,8 +27,21 @@ final class ViewController: UIViewController {
         addViews()
         styleViews()
         setupConstraints()
+<<<<<<< Updated upstream
         fetchData()
         topNavigationBar.delegate = self
+=======
+        fetchData(sportSlug: "football")
+        configureData()
+    }
+
+    private func configureData() {
+        topNavigationBar.onSettingsTap = { [weak self] in
+            let settingsVC = SettingsViewController()
+            settingsVC.modalPresentationStyle = .fullScreen
+            self?.present(settingsVC, animated: true)
+        }
+>>>>>>> Stashed changes
     }
 
     private func setupCollectionView() {
@@ -157,14 +170,6 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.frame.width, height: 8)
     }
 
-}
-
-extension ViewController: TopNavigatorBarDelegate {
-    func didTapSettings() {
-        let settingsVC = SettingsViewController()
-        settingsVC.modalPresentationStyle = .fullScreen
-        present(settingsVC, animated: true)
-    }
 }
 
 extension ViewController: UICollectionViewDelegate {

@@ -64,6 +64,7 @@ final class EventHeaderView: BaseView {
         
         mainStackView.axis = .horizontal
         mainStackView.alignment = .center
+        mainStackView.distribution = .equalCentering
         
         [homeTeamNameLabel, guestTeamNameLabel].forEach {
             $0.font = AppFonts.eventHeader
@@ -97,17 +98,7 @@ final class EventHeaderView: BaseView {
         }
         
         homeStackView.snp.makeConstraints { make in
-            make.width.equalTo(96)
-            make.height.equalTo(80)
-        }
-        
-        awayStackView.snp.makeConstraints { make in
-            make.width.equalTo(96)
-            make.height.equalTo(80)
-        }
-        
-        centerStackView.snp.makeConstraints { make in
-            make.width.equalTo(136)
+            make.width.equalTo(awayStackView)
         }
         
         homeTeamImageView.snp.makeConstraints { make in
@@ -119,82 +110,29 @@ final class EventHeaderView: BaseView {
         }
     }
     
-    func configure(with event: Event, viewModel: EventViewModel) {
-            homeTeamNameLabel.text = event.homeTeam.name
-            guestTeamNameLabel.text = event.awayTeam.name
-            
-            homeTeamImageView.image = viewModel.homeTeamLogo
-            guestTeamImageView.image = viewModel.awayTeamLogo
-            
-            
-            dateLabel.isHidden = true
-            scoreStackView.isHidden = true
-            
-        let liveRedColor = AppColors.red
-            
-            switch event.status {
-            case .notStarted:
-                
-                dateLabel.isHidden = false
-                
-                dateLabel.text = viewModel.statusText
-                dateLabel.textColor = AppColors.primaryLabel
-                
-                bottomLabel.text = viewModel.timeText
-                bottomLabel.textColor = AppColors.primaryLabel
-                
-            case .inProgress:
-          
-                scoreStackView.isHidden = false
-                homeScoreLabel.text = "\(event.homeScore ?? 0)"
-                dashLabel.text = "-"
-                awayScoreLabel.text = "\(event.awayScore ?? 0)"
-                
-                [homeScoreLabel, dashLabel, awayScoreLabel].forEach {
-                    $0.textColor = liveRedColor
-                }
-                
-                let date = Date(timeIntervalSince1970: TimeInterval(event.startTimestamp))
-                let minutesPassed = Int(Date().timeIntervalSince(date) / 60)
-                let displayMin = minutesPassed > 0 ? "\(minutesPassed)'" : "1'"
-                
-                bottomLabel.text = displayMin
-                bottomLabel.textColor = liveRedColor
-                
-            case .finished:
-                
-                scoreStackView.isHidden = false
-                let hScore = event.homeScore ?? 0
-                let aScore = event.awayScore ?? 0
-                
-                homeScoreLabel.text = "\(hScore)"
-                dashLabel.text = "-"
-                awayScoreLabel.text = "\(aScore)"
-                
-                dashLabel.textColor = AppColors.secondaryLabel
-                bottomLabel.text = "Full Time"
-                bottomLabel.font = AppFonts.status
-                bottomLabel.textColor = AppColors.secondaryLabel
-                
-                if hScore > aScore {
-                    homeScoreLabel.textColor = AppColors.primaryLabel
-                    awayScoreLabel.textColor = AppColors.secondaryLabel
-                } else if aScore > hScore {
-                    homeScoreLabel.textColor = AppColors.secondaryLabel
-                    awayScoreLabel.textColor = AppColors.primaryLabel
-                } else {
-                    
-                    homeScoreLabel.textColor = AppColors.primaryLabel
-                    awayScoreLabel.textColor = AppColors.primaryLabel
-                }
-                
-            default:
-                dateLabel.isHidden = false
-                dateLabel.text = viewModel.statusText
-                dateLabel.textColor = AppColors.secondaryLabel
-                bottomLabel.text = ""
-            }
+    func configure(with viewModel: EventHeaderViewModel) {
+        homeTeamNameLabel.text = viewModel.homeTeamName
+        guestTeamNameLabel.text = viewModel.awayTeamName
         
-        }
+        homeTeamImageView.image = viewModel.homeTeamLogo
+        guestTeamImageView.image = viewModel.awayTeamLogo
+        
+        dateLabel.isHidden = viewModel.isDateHidden
+        scoreStackView.isHidden = viewModel.isScoreHidden
+        
+        dateLabel.text = viewModel.dateText
+        if let color = viewModel.dateColor { dateLabel.textColor = color }
+        
+        bottomLabel.text = viewModel.bottomText
+        if let color = viewModel.bottomTextColor { bottomLabel.textColor = color }
+        
+        homeScoreLabel.text = viewModel.homeScoreText
+        if let color = viewModel.homeScoreColor { homeScoreLabel.textColor = color }
+        
+        dashLabel.text = viewModel.dashText
+        if let color = viewModel.dashColor { dashLabel.textColor = color }
+        
+        awayScoreLabel.text = viewModel.awayScoreText
+        if let color = viewModel.awayScoreColor { awayScoreLabel.textColor = color }
     }
-
+}
