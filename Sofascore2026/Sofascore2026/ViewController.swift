@@ -54,18 +54,26 @@ final class ViewController: UIViewController {
 
     private func fetchData(sportSlug: String) {
         self.currentSportSlug = sportSlug
-        let dataSource = Homework3DataSource()
-        let allEvents = dataSource.events()
-
-        let grouped = Dictionary(grouping: allEvents) { $0.league?.id ?? 0 }
-
-        self.sections = grouped.compactMap { (_, value) in
-            guard let league = value.first?.league else { return nil }
-            return (league: league, events: value)
+        
+        Task {
+            do {
+                let allEvents = try await APIClient.shared.fetchEventsAsync(sportSlug: sportSlug)
+                
+                let grouped = Dictionary(grouping: allEvents) { $0.league?.id ?? 0 }
+                
+                self.sections = grouped.compactMap { (_, value) in
+                    guard let league = value.first?.league else { return nil }
+                    return (league: league, events: value)
+                }
+                .sorted { $0.league.name < $1.league.name }
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            } catch {
+                print(error)
+            }
         }
-        .sorted { $0.league.name < $1.league.name }
-
-        collectionView.reloadData()
     }
 }
 
