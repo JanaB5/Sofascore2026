@@ -132,7 +132,7 @@ final class EventHeaderView: BaseView {
             
         let liveRedColor = AppColors.red
             
-            switch event.status {
+            switch event.eventStatus {
             case .notStarted:
                 
                 dateLabel.isHidden = false

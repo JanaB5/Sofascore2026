@@ -33,7 +33,7 @@ struct EventViewModel {
     }
 
     private static func setupStatusText(event: Event) -> String {
-        switch event.status {
+        switch event.eventStatus {
         case .notStarted:
             return AppStrings.dash
         case .inProgress:
@@ -46,7 +46,7 @@ struct EventViewModel {
     }
 
     private static func setupStatusColor(event: Event) -> UIColor {
-        if event.status == .inProgress {
+        if event.eventStatus == .inProgress {
             return AppColors.red
         }
         return AppColors.secondaryLabel
@@ -56,7 +56,7 @@ struct EventViewModel {
         let homeScore = event.homeScore ?? 0
         let awayScore = event.awayScore ?? 0
 
-        switch event.status {
+        switch event.eventStatus {
         case .notStarted:
             return (AppStrings.empty, AppStrings.empty, AppColors.primaryLabel, AppColors.primaryLabel)
             

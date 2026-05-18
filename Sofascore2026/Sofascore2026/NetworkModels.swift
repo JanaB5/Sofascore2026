@@ -1,78 +1,45 @@
 import Foundation
 import SofaAcademic
 
-struct ApiCountry: Codable {
+struct Country: Codable {
     let id: Int?
     let name: String
 }
 
-struct ApiTeam: Codable {
+struct Team: Codable {
     let id: Int
     let name: String
     let logoUrl: String?
 }
 
-struct ApiLeague: Codable {
+struct League: Codable {
     let id: Int
     let name: String
-    let country: ApiCountry?
+    let country: Country?
     let logoUrl: String?
 }
 
-struct ApiEvent: Codable {
+struct Event: Codable {
     let id: Int
-    let homeTeam: ApiTeam
-    let awayTeam: ApiTeam
-    let league: ApiLeague?
-    let status: String
+    let homeTeam: Team
+    let awayTeam: Team
+    let league: League?
+    private let status: String
     let startTimestamp: Int
     let homeScore: Int?
     let awayScore: Int?
     
-    func toDomain() -> Event {
-        let countryDomain = Country(
-            id: league?.country?.id ?? 0,
-            name: league?.country?.name ?? "Unknown"
-        )
-        
-        let leagueDomain = League(
-            id: league?.id ?? 0,
-            name: league?.name ?? "Unknown",
-            country: countryDomain,
-            logoUrl: league?.logoUrl ?? ""
-        )
-        
-        let homeDomain = Team(
-            id: homeTeam.id,
-            name: homeTeam.name,
-            logoUrl: homeTeam.logoUrl ?? ""
-        )
-        
-        let awayDomain = Team(
-            id: awayTeam.id,
-            name: awayTeam.name,
-            logoUrl: awayTeam.logoUrl ?? ""
-        )
-        
-        var eventStatus: EventStatus = .notStarted
+    var eventStatus: EventStatus {
         let lowerStatus = status.lowercased()
-        
         if lowerStatus == "in_progress" || lowerStatus == "inprogress" || lowerStatus == "live" {
-            eventStatus = .inProgress
+            return .inProgress
+        } else if lowerStatus == "finished" || lowerStatus == "ended" || lowerStatus == "ft" {
+            return .finished
         }
-        else if lowerStatus == "finished" || lowerStatus == "ended" || lowerStatus == "ft" {
-            eventStatus = .finished
-        }
-        
-        return Event(
-            id: id,
-            homeTeam: homeDomain,
-            awayTeam: awayDomain,
-            league: leagueDomain,
-            status: eventStatus,
-            startTimestamp: startTimestamp,
-            homeScore: homeScore,
-            awayScore: awayScore
-        )
+        return .notStarted
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case id, homeTeam, awayTeam, league, status, startTimestamp, homeScore, awayScore
     }
 }

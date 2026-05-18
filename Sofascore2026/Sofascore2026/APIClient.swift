@@ -28,12 +28,9 @@ final class APIClient {
             
             do {
                 let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let decodedEvents = try decoder.decode([Event].self, from: data)
                 
-                let decodedEvents = try decoder.decode([ApiEvent].self, from: data)
-                let domainEvents = decodedEvents.map { $0.toDomain() }
-                
-                completion(.success(domainEvents))
+                completion(.success(decodedEvents))
             } catch {
                 completion(.failure(error))
             }
@@ -51,9 +48,7 @@ final class APIClient {
         let (data, _) = try await URLSession.shared.data(from: url)
         
         let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
-        let decodedEvents = try decoder.decode([ApiEvent].self, from: data)
-        return decodedEvents.map { $0.toDomain() }
+        let decodedEvents = try decoder.decode([Event].self, from: data)
+        return decodedEvents
     }
 }
