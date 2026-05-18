@@ -6,14 +6,16 @@ final class EventDetailsViewController: UIViewController {
 
     private let event: Event
     private let league: League
+    private let sportSlug: String
     
     private let topBackgroundView = UIView()
     private let customNavBar = EventNavigationBarView()
     private let headerView = EventHeaderView()
     
-    init(event: Event, league: League) {
+    init(event: Event, league: League, sportSlug: String) {
         self.event = event
         self.league = league
+        self.sportSlug = sportSlug
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -54,7 +56,6 @@ final class EventDetailsViewController: UIViewController {
         customNavBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(56)
         }
         
         headerView.snp.makeConstraints { make in
@@ -64,12 +65,15 @@ final class EventDetailsViewController: UIViewController {
     }
     
     private func configureData() {
-            customNavBar.delegate = self
-            customNavBar.configure(with: event, league: league)
-            
-            let eventVM = EventViewModel(event: event)
-            headerView.configure(with: event, viewModel: eventVM)
-        }
+        customNavBar.delegate = self
+        
+        let navBarVM = EventNavigationBarViewModel(event: event, league: league, sportSlug: sportSlug)
+        customNavBar.configure(with: navBarVM)
+        
+        let eventVM = EventViewModel(event: event)
+        let headerVM = EventHeaderViewModel(event: event, eventViewModel: eventVM)
+        headerView.configure(with: headerVM)
+    }
 }
 
 extension EventDetailsViewController: EventNavigationBarDelegate {

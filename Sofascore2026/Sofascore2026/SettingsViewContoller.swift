@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import SofaAcademic
 
-final class SettingsViewController: UIViewController {
+final class SettingsViewController: UIViewController, BaseViewProtocol {
 
     private let topBackgroundView = UIView()
     private let headerContainerView = UIView()
@@ -10,7 +10,7 @@ final class SettingsViewController: UIViewController {
     
     private lazy var dismissButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(dismissTapped), for: .touchUpInside)
         return button
@@ -23,8 +23,7 @@ final class SettingsViewController: UIViewController {
         setupConstraints()
     }
 
-    private func addViews() {
-
+    func addViews() {
         view.addSubview(topBackgroundView)
         view.addSubview(headerContainerView)
         
@@ -32,8 +31,7 @@ final class SettingsViewController: UIViewController {
         headerContainerView.addSubview(dismissButton)
     }
 
-    private func styleViews() {
-
+    func styleViews() {
         view.backgroundColor = AppColors.softBlue
         topBackgroundView.backgroundColor = AppColors.primaryDefault
         headerContainerView.backgroundColor = AppColors.primaryDefault
@@ -43,7 +41,7 @@ final class SettingsViewController: UIViewController {
         titleLabel.font = .systemFont(ofSize: 18, weight: .bold)
     }
 
-    private func setupConstraints() {
+    func setupConstraints() {
         topBackgroundView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.bottom.equalTo(headerContainerView.snp.top)
@@ -52,20 +50,19 @@ final class SettingsViewController: UIViewController {
         headerContainerView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(56)
-        }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
         }
         
         dismissButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().inset(16)
+            make.top.bottom.equalToSuperview().inset(12)
+            make.size.equalTo(24)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalTo(dismissButton.snp.trailing).offset(32)
             make.centerY.equalToSuperview()
-            make.size.equalTo(44)
         }
     }
-
 
     @objc private func dismissTapped() {
         dismiss(animated: true)

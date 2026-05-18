@@ -3,29 +3,26 @@ import UIKit
 import SnapKit
 import SofaAcademic
 
-protocol TopNavigatorBarDelegate: AnyObject {
-    func didTapSettings()
-}
-
-class TopNavigatorBarView: BaseView{
+class TopNavigatorBarView: BaseView {
     
-    weak var delegate: TopNavigatorBarDelegate?
+    var onSettingsTap: (() -> Void)?
+    
     private let containerView = UIView()
     private let logoImageView = UIImageView()
     private let trophyImageView = UIImageView()
+    
     private lazy var settingsButton: UIButton = {
-            let button = UIButton(type: .custom)
-            button.setImage(UIImage(named: "ic_settings"), for: .normal)
-            button.addTarget(self, action: #selector(settingsTapped), for: .touchUpInside)
-            return button
-        }()
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "ic_settings"), for: .normal)
+        button.addTarget(self, action: #selector(settingsTapped), for: .touchUpInside)
+        return button
+    }()
     
     override func addViews() {
         addSubview(containerView)
         containerView.addSubview(logoImageView)
         containerView.addSubview(trophyImageView)
         containerView.addSubview(settingsButton)
-        
     }
     
     override func styleViews() {
@@ -37,7 +34,6 @@ class TopNavigatorBarView: BaseView{
     override func setupConstraints() {
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-            
         }
 
         logoImageView.snp.makeConstraints { make in
@@ -45,7 +41,6 @@ class TopNavigatorBarView: BaseView{
             make.top.equalToSuperview().offset(14)
             make.bottom.equalToSuperview().offset(-14)
             make.height.equalTo(20)
-          
         }
 
         settingsButton.snp.makeConstraints { make in
@@ -60,7 +55,8 @@ class TopNavigatorBarView: BaseView{
             make.size.equalTo(24)
         }
     }
+    
     @objc private func settingsTapped() {
-            delegate?.didTapSettings()
-        }
+        onSettingsTap?()
+    }
 }
