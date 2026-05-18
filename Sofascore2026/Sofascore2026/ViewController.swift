@@ -8,18 +8,20 @@ final class ViewController: UIViewController {
     private let topNavigationBar = TopNavigatorBarView()
     private let sportsCategory = SportSelectorView()
     private var sections: [(league: League, events: [Event])] = []
+    private var currentSportSlug: String = "football"
     
     private var flowLayout: UICollectionViewFlowLayout {
-            let layout = UICollectionViewFlowLayout()
-            layout.scrollDirection = .vertical
-            layout.sectionHeadersPinToVisibleBounds = true
-            layout.minimumLineSpacing = 0
-            return layout
-        }
-        private lazy var collectionView: UICollectionView = .init(
-            frame: .zero,
-            collectionViewLayout: flowLayout
-        )
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.sectionHeadersPinToVisibleBounds = true
+        layout.minimumLineSpacing = 0
+        return layout
+    }
+    
+    private lazy var collectionView: UICollectionView = .init(
+        frame: .zero,
+        collectionViewLayout: flowLayout
+    )
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,16 @@ final class ViewController: UIViewController {
         addViews()
         styleViews()
         setupConstraints()
-        fetchData()
+        fetchData(sportSlug: "football")
+        configureData()
+    }
+
+    private func configureData() {
+        topNavigationBar.onSettingsTap = { [weak self] in
+            let settingsVC = SettingsViewController()
+            settingsVC.modalPresentationStyle = .fullScreen
+            self?.present(settingsVC, animated: true)
+        }
     }
 
     private func setupCollectionView() {
@@ -41,7 +52,8 @@ final class ViewController: UIViewController {
         collectionView.register(FooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "FooterView")
     }
 
-    private func fetchData() {
+    private func fetchData(sportSlug: String) {
+        self.currentSportSlug = sportSlug
         let dataSource = Homework3DataSource()
         let allEvents = dataSource.events()
 
@@ -157,4 +169,15 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
+extension ViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.collectionView {
+            let selectedEvent = sections[indexPath.section].events[indexPath.row]
+            let selectedLeague = sections[indexPath.section].league
+            
+            let detailsVC = EventDetailsViewController(event: selectedEvent, league: selectedLeague, sportSlug: currentSportSlug)
+            navigationController?.pushViewController(detailsVC, animated: true)
+        }
+    }
+}

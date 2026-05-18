@@ -9,7 +9,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.backgroundColor = .clear
-        window.rootViewController = ViewController()
+  
+        let mainVC = ViewController()
+        let navigationController = UINavigationController(rootViewController: mainVC)
+        navigationController.isNavigationBarHidden = true
+        window.rootViewController = navigationController
+        
         window.makeKeyAndVisible()
 
         self.window = window
