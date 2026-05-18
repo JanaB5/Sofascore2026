@@ -6,14 +6,16 @@ final class EventDetailsViewController: UIViewController {
 
     private let event: Event
     private let league: League
+    private let sportSlug: String
     
     private let topBackgroundView = UIView()
     private let customNavBar = EventNavigationBarView()
     private let headerView = EventHeaderView()
     
-    init(event: Event, league: League) {
+    init(event: Event, league: League, sportSlug: String) {
         self.event = event
         self.league = league
+        self.sportSlug = sportSlug
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -65,7 +67,7 @@ final class EventDetailsViewController: UIViewController {
     private func configureData() {
         customNavBar.delegate = self
         
-        let navBarVM = EventNavigationBarViewModel(event: event, league: league)
+        let navBarVM = EventNavigationBarViewModel(event: event, league: league, sportSlug: sportSlug)
         customNavBar.configure(with: navBarVM)
         
         let eventVM = EventViewModel(event: event)

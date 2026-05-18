@@ -98,7 +98,11 @@ final class EventHeaderView: BaseView {
         }
         
         homeStackView.snp.makeConstraints { make in
-            make.width.equalTo(awayStackView)
+            make.width.equalTo(96)
+        }
+        
+        awayStackView.snp.makeConstraints { make in
+            make.width.equalTo(96)
         }
         
         homeTeamImageView.snp.makeConstraints { make in

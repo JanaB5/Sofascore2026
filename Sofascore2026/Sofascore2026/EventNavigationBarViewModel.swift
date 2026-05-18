@@ -5,10 +5,10 @@ struct EventNavigationBarViewModel {
     let navBarText: String
     let leagueLogo: UIImage?
     
-    init(event: Event, league: League) {
+    init(event: Event, league: League, sportSlug: String) {
         let leagueVM = LeagueViewModel(league: league)
         
-        let sportName = "Football"
+        let sportName = sportSlug.capitalized
         let countryName = leagueVM.countryName ?? ""
         let leagueName = leagueVM.leagueName ?? ""
         
